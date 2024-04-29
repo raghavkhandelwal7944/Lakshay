@@ -1,0 +1,70 @@
+npm install react react-dom
+
+import React, { useState } from 'react';
+
+const TextEditor = () => {
+  const [text, setText] = useState('');
+
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSave = () => {
+    localStorage.setItem('savedText', text);
+    alert('Text saved successfully!');
+  };
+
+  return (
+    <div>
+      <textarea
+        value={text}
+        onChange={handleInputChange}
+        style={{ width: '80%', height: '300px', padding: '10px' }}
+      ></textarea>
+      <button onClick={handleSave} style={{ padding: '10px 20px', margin: '20px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        Save
+      </button>
+    </div>
+  );
+};
+
+export default TextEditor;
+
+
+import React from 'react';
+import TextEditor from './TextEditor';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Simple Text Editor</h1>
+      <TextEditor />
+    </div>
+  );
+};
+
+export default App;
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Text Editor</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="src/index.js"></script>
+</body>
+</html>
+
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
